@@ -1,0 +1,38 @@
+﻿@page
+@model ProjectMVC.Pages.Authoors.AuthorsModel
+@{
+}
+
+<table class=" table table-hover">
+    <thead class=" table-secondary"> 
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Authors[0].AuthorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Authors[0].AuthorLastName)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Authors)
+        {
+            <tr>
+                <td scope="col" class="table-warning">
+                    @Html.DisplayFor(modelitem => item.AuthorName)
+                </td>
+                <td scope="col" class="table-warning">
+                    @Html.DisplayFor(modelitem => item.AuthorLastName)
+                </td>
+                <td class="table-secondary">
+                    <div>
+                        <a asp-page="./Edit" asp-route-id="@item.AuthorID">Edit</a>
+                    </div>
+                    <div>
+                        <a asp-page="./Details" asp-route-id="@item.AuthorID">Details</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
