@@ -32,6 +32,7 @@ namespace ProjectMVC
                     Configuration.GetConnectionString("LibraryTwoConnectionString")));
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<LibraryTwoUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<LibraryTwoDBContext>();
             services.AddSession(options =>
             {
