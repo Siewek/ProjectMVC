@@ -1,0 +1,66 @@
+﻿@page
+@model ProjectMVC.Pages.Filters.FilterCategoryDisplayModel
+@{
+}
+<div>
+    <a class="btn btn-warning" asp-page="./Filters"> Back to Filters</a>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ISBN</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Books[0].Title)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Books[0].Description)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Books[0].Ammount)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Books)
+        {
+            @if (item.Ammount > 0)
+            {
+                <tr class="table-success">
+                    <td scope="col">
+                        @Html.DisplayFor(modelitem => item.BookID)
+                    </td>
+                    <td scope="col">
+                        @Html.DisplayFor(modelitem => item.Title)
+                    </td>
+                    <td scope="col">
+                        @Html.DisplayFor(modelitem => item.Description)
+                    </td>
+                    <td scope="col">
+                        @Html.DisplayFor(modelitem => item.Ammount)
+                    </td>
+                    <td>
+                        <div>
+                            <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr class="table-danger">
+                    <td scope="col">
+                        @Html.DisplayFor(modelitem => item.BookID)
+                    </td>
+                    <td scope="col">
+                        @Html.DisplayFor(modelitem => item.Title)
+                    </td>
+                    <td scope="col">
+                        @Html.DisplayFor(modelitem => item.Description)
+                    </td>
+                    <td scope="col">
+                        @Html.DisplayFor(modelitem => item.Ammount)
+                    </td>
+                    <td>
+                        <div>
+                            <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,36 @@
+﻿@page
+@model ProjectMVC.Pages.Categories.CategoriesModel
+@{
+}
+
+<p>
+    <a class="btn btn-warning" asp-page="Create">Create new Category</a>
+    <a class="btn btn-warning" asp-page="/Filters/Filters">Filter by Category</a>
+</p>
+
+<table class=" table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Categories[0].CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categories[0].CategoryDescription)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Categories)
+        {
+            <tr>
+                <td scope="col">
+                    @Html.DisplayFor(modelitem => item.CategoryName)
+                </td>
+                <td scope="col">
+                    @Html.DisplayFor(modelitem => item.CategoryDescription)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

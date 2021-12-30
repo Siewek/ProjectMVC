@@ -1,0 +1,25 @@
+﻿@page
+@model ProjectMVC.Pages.Filters.FiltersModel
+@{
+}
+
+
+<form method="post">
+    <h1>Available Categories</h1>
+    <div class="row">
+        @foreach (var item in Model.Categories)
+        {
+           <div class="col-sm">
+               <a class="btn btn-warning" asp-page="./FilterCategoryDisplay" asp-route-id="@item.CategoryID">@Html.DisplayFor(modelitem => item.CategoryName)</a>              
+           </div>}
+    </div>
+    <h1>Available Tags</h1>
+    <div class="row">
+    
+        @foreach (var item in Model.Tags)
+        {<div class="col-sm">
+            <a class="btn btn-warning" asp-page="./FilterTagDisplay" asp-route-id="@item.TagID">@Html.DisplayFor(modelitem => item.TagName)</a>
+          </div> }
+    
+    </div>
+</form>
