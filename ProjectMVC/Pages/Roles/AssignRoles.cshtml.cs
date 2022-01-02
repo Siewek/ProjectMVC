@@ -27,11 +27,11 @@ namespace ProjectMVC.Pages.Roles
         {
             int index = 0;
 
-            while (roles.ElementAt(index).Id != id)
+            while (roles.ElementAt(index).Id != id )
                 index++;
             return roles.ElementAt(index).Name;
         }
-
+       
         public string RoleID; 
         public IList<LibraryTwoUser> allusers { get; set; }
         public IList<LibraryTwoUser> roleusers { get; set; }
@@ -39,19 +39,34 @@ namespace ProjectMVC.Pages.Roles
         public LibraryTwoUser GetUser(string id)
         {
             int index = 0;
-            while (allusers.ElementAt(index).Id != id) index++;
+            while (allusers.ElementAt(index).Id != id && index <= allusers.Count() - 1) index++;
             return allusers.ElementAt(index);
+        }
+        public LibraryTwoUser GetUser2(string id)
+        {
+            int index = 0;
+            while (roleusers.ElementAt(index).Id != id && index <= roleusers.Count() - 1) index++;
+            return roleusers.ElementAt(index);
         }
 
         public IdentityRole GetRole(string id)
         {
             int index = 0;
-            while (roles.ElementAt(index).Id != id && index <= roles.Count()-1) index++;
+            while (roles.ElementAt(index).Id.ToString() != id && index <= roles.Count()-1)
+            {
+                index++;
+            }
             return roles.ElementAt(index);
         }
         public async Task<IActionResult> OnGetAsync(string id)
         {
+            if(RoleID == null)
             RoleID = id;
+            else
+            {
+                var RoleIDaddress = HttpContext.Session.GetString("RoleAddress");
+                RoleID = JsonConvert.DeserializeObject<string>(RoleIDaddress);
+            }
             roles = await _roleManager.Roles.ToListAsync();
             allusers = await _userManager.Users.ToListAsync();
             roleusers = await _userManager.GetUsersInRoleAsync(GetRole(RoleID).Name);
@@ -73,21 +88,26 @@ namespace ProjectMVC.Pages.Roles
         {
            var RoleIDaddress = HttpContext.Session.GetString("RoleAddress");
            RoleID = JsonConvert.DeserializeObject<string>(RoleIDaddress);
-            await OnGetAsync(RoleID);
-            
+          await OnGetAsync(RoleID);
+            string name = GetRole(RoleID).Name;
             if (action == "add")
             {
-                await _userManager.AddToRoleAsync(GetUser(id), GetRole(RoleID).Name);
-              //   HttpContext.Session.SetString("RoleAddress",
-            //JsonConvert.SerializeObject(RoleID));
-                // HttpContext.Session.Clear();
+                await _userManager.AddToRoleAsync(GetUser(id), name);
+                HttpContext.Session.SetString("RoleAddress",
+         JsonConvert.SerializeObject(RoleID));
                 //return Page();
                   return RedirectToPage("./ViewRoles");
-                
+                //return RedirectToPage();
             }
-            if(action =="remove")
+            
+            if (action =="remove")
             {
-                return Page();
+                await _userManager.RemoveFromRoleAsync(GetUser2(id),name);
+                HttpContext.Session.SetString("RoleAddress",
+         JsonConvert.SerializeObject(RoleID));
+                //return RedirectToPage("AssignRoles");
+                  return RedirectToPage("./ViewRoles");
+
             }
             return Page();
         }
