@@ -2,3 +2,53 @@
 @model ProjectMVC.Pages.Roles.AssignRolesModel
 @{
 }
+
+<h1>Available Users</h1>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.allusers[0].Id)</td>
+            <td>@Html.DisplayNameFor(model => model.allusers[0].UserName)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.allusers)
+        {<tr>
+            <td>@Html.DisplayFor(modelitem => user.Id)</td>
+            <td>@Html.DisplayFor(modelitem => user.UserName)</td>
+            <td>
+                <form method="post">
+                    <input type="text" hidden value="add" name="action" />
+                    <input type="text" hidden value=@user.Id name="id" />
+                    <input class="btn btn-warning" value="Add To Role" type="submit" />
+                </form>
+            </td>
+        </tr>
+         }
+     </tbody>
+ </table>
+<h1>Users who already have this role</h1>
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.roleusers[0].Id)</td>
+            <td>@Html.DisplayNameFor(model => model.roleusers[0].UserName)</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.roleusers)
+        {
+        <tr>
+            <td>@Html.DisplayFor(modelitem => user.Id)</td>
+            <td>@Html.DisplayFor(modelitem => user.UserName)</td>
+            <td>
+                <form method="post">
+                    <input type="text" hidden value="remove" name="action" />
+                    <input type="text" hidden value=@user.Id name="id" />
+                    <input class="btn btn-warning" value="Remove from Role" type="submit" />
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

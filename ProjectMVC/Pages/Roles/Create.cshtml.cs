@@ -13,10 +13,12 @@ namespace ProjectMVC.Pages.Roles
     public class CreateModel : PageModel
     {
         public ProjectMVC.Data.LibraryTwoDBContext _context;
+        RoleManager<IdentityRole> roleManager;
 
-        public CreateModel(LibraryTwoDBContext context)
+        public CreateModel(LibraryTwoDBContext context, RoleManager<IdentityRole> roleManager)
         {
             _context = context;
+            this.roleManager = roleManager;
         }
         [BindProperty]
         public IdentityRole _roles { get; set; }
