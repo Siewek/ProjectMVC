@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjectMVC.Data;
 using ProjectMVC.Models;
 
-namespace ProjectMVC.Pages.Categories
+namespace ProjectMVC.Pages.Authors
 {
-    [Authorize(Roles ="Admin , Mod")]
+    [Authorize(Roles="Admin , Mod")]
     public class CreateModel : PageModel
     {
         public ProjectMVC.Data.LibraryTwoDBContext _context;
@@ -19,23 +19,23 @@ namespace ProjectMVC.Pages.Categories
         {
             _context = context;
         }
+       
+        public IList<Author> Authors { get; set; }
         [BindProperty]
-        public Category _Categories { get; set; }
-        public IList<Category> Categories { get; set; }
-
+        public Author _author { get; set; }
         public void OnGet()
         {
-            Categories = _context.Categories.ToList();
+            Authors = _context.Authors.ToList();
         }
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return Page();
             }
-            _context.Categories.Add(_Categories);
+            _context.Authors.Add(_author);
             await _context.SaveChangesAsync();
-            return RedirectToPage("./Categories");
+            return RedirectToPage("./Authors");
         }
     }
 }

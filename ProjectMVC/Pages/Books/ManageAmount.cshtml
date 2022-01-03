@@ -1,0 +1,20 @@
+﻿@page
+@model ProjectMVC.Pages.Books.ManageAmountModel
+@{
+}
+
+<h1> Manage Amount</h1>
+<row>>
+    <h2>Book: @Html.DisplayFor(model => model.Books[0].Title)</h2>
+</row>
+<form method="post">
+    <input type="number" name="amount" required min="0" max="100" />
+    <input type="number" name="id" hidden value=@Model.Books[0].BookID />
+
+    <input type="submit" value="Substract" class="btn btn-danger" name="action">
+    <input type="submit" value="Add" class="btn btn-success"name="action" />
+
+
+
+
+</form>

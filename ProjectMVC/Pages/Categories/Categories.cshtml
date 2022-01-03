@@ -4,7 +4,10 @@
 }
 
 <p>
-    <a class="btn btn-warning" asp-page="Create">Create new Category</a>
+    @if (User.IsInRole("Admin") || User.IsInRole("Mod"))
+    {
+    <a class="btn btn-success" asp-page="Create">Create new Category</a>
+    }
     <a class="btn btn-warning" asp-page="/Filters/Filters">Filter by Category</a>
 </p>
 

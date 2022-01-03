@@ -1,0 +1,27 @@
+﻿@page
+@model ProjectMVC.Pages.Roles.AdminPanelModel
+@{
+}
+
+<h1>Admin Panel</h1>
+<table class="table table-hover">
+    <thead>
+       <tr>        
+           <td>Panel Options</td>
+       </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Roles</td>
+            <td><a class="btn btn-warning" asp-page="./ViewRoles">Manage Roles</a></td>
+        </tr>
+        <tr>
+            <td>Authors</td>
+            <td><a class="btn btn-warning" asp-page="/Authors/Authors">Manage Authors</a></td>
+        </tr>
+        <tr>
+            <td>Categories</td>
+            <td><a class="btn btn-warning" asp-page="/Categories/Categories">Manage Categories</a></td>
+        </tr>
+    </tbody>
+</table>

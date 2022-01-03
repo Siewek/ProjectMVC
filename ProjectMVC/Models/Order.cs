@@ -13,6 +13,8 @@ namespace ProjectMVC.Models
         public int BookID { get; set; }
         public int UserID { get; set; }
 
+        public DateTime DateOfOrder { get; set; }
+        public DateTime EndDate { get; set; }
 
     }
 }

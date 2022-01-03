@@ -10,6 +10,11 @@
             <th scope="col">@Html.DisplayNameFor(model => model.Books[0].Title)</th>
             <th scope="col">@Html.DisplayNameFor(model => model.Books[0].Description)</th>
             <th scope="col">Amount</th>
+            <th scope="col"></th>
+            @if(User.IsInRole("Mod")||User.IsInRole("Admin"))
+            {
+                <th scope="col">Mod Options</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -35,6 +40,14 @@
                     <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
                 </div>
             </td>
+            @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
+            {
+                <td><a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a></td>
+            }
+                    else
+                    {
+                        <td></td>
+                    }
         </tr>
             }
             else{
@@ -52,10 +65,18 @@
             @Html.DisplayFor(modelitem => item.Ammount)
         </td>
         <td>
-            <div >
+            <div>
                 <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
             </div>
         </td>
+        @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
+        {
+            <td><a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a></td>
+        }
+        else
+        {
+            <td></td>
+        }
     </tr>
             }
         }
