@@ -11,7 +11,7 @@
             <th scope="col">@Html.DisplayNameFor(model => model.Books[0].Description)</th>
             <th scope="col">Amount</th>
             <th scope="col"></th>
-            @if(User.IsInRole("Mod")||User.IsInRole("Admin"))
+            @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
             {
                 <th scope="col">Mod Options</th>
             }
@@ -45,10 +45,10 @@
                         </td>
                         @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
                         {
-                    <td>
-                        <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
-                        <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
-                    </td>
+                            <td>
+                                <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
+                                <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
+                            </td>
                         }
                         else
                         {
@@ -78,10 +78,10 @@
                         </td>
                         @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
                         {
-                    <td>
-                        <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
-                        <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
-                    </td>
+                            <td>
+                                <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
+                                <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
+                            </td>
                         }
                         else
                         {
@@ -93,7 +93,7 @@
             }
             else
             { @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
-            {
+                {
                     <tr class="table-primary">
                         <td scope="col">
                             @Html.DisplayFor(modelitem => item.BookID)
@@ -114,10 +114,10 @@
                         </td>
                         @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
                         {
-                    <td>
-                        <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
-                        <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
-                    </td>
+                            <td>
+                                <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
+                                <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
+                            </td>
                         }
                         else
                         {
@@ -125,7 +125,11 @@
                         }
                     </tr>
                 }
-            }
+        }
         }
     </tbody>
 </table>
+@if (User.IsInRole("Mod") || User.IsInRole("Admin"))
+{
+    <a class="btn btn-success" asp-page="./Create">Create</a>
+}

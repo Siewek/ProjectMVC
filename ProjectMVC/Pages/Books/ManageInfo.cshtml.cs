@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjectMVC.Data;
@@ -9,6 +10,7 @@ using ProjectMVC.Models;
 
 namespace ProjectMVC.Pages.Books
 {
+    [Authorize(Roles = "Admin , Mod")]
     public class ManageInfoModel : PageModel
     {
         public ProjectMVC.Data.LibraryTwoDBContext _context;
@@ -29,6 +31,8 @@ namespace ProjectMVC.Pages.Books
         {
             Books = (from b in _context.Books where b.BookID == id select b).ToList();
             Tags = _context.Tags.ToList();
+            HttpContext.Session.Clear();
+
         }
         public async Task<IActionResult> OnPostAsync(bool rdy, int id, string tagstring)
         {

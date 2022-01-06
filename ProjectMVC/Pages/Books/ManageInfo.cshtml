@@ -5,10 +5,13 @@
 
 
 <form method="post">
-    <div>
-    <a class="btn btn-warning" asp-page="./ManageTags" asp-route-id="@Model.Books[0].BookID">Manage Tags</a>
-    </div>
-    <a2>Put on shelves</a2>
+        <div>
+            <a scope="col" class="btn btn-warning" asp-page="./ManageTags" asp-route-id="@Model.Books[0].BookID">Manage Tags</a>
+        </div>
+        <div class="movedown">
+            <a scope="col" class="btn btn-warning" asp-page="./ManageAuthors" asp-route-id="@Model.Books[0].BookID">Manage Authors</a>
+        </div>
+    <a2 >Put on shelves</a2>
     <input type="checkbox" name="rdy" value="true" class="big-checkbox" />
     <input type="number" name="id" hidden value=@Model.Books[0].BookID />
     <div>
