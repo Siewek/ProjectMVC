@@ -79,3 +79,11 @@ body {
     left: 0px;
     z-index: 1000;
 }
+.big-checkbox {
+    width: 30px;
+    height: 30px;
+}
+
+.movedown{
+    padding-top:40px;
+}

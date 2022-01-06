@@ -32,6 +32,8 @@ namespace ProjectMVC.Models
 
 
         public string TableOfContents { get; set; }
+
+        public bool IsReady { get; set; }
     }
 }
 

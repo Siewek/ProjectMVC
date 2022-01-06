@@ -20,64 +20,111 @@
     <tbody>
         @foreach (var item in Model.Books)
         {
-            @if (item.Ammount > 0)
+            @if (item.IsReady)
             {
-        <tr class="table-success">
-            <td scope="col">
-                @Html.DisplayFor(modelitem => item.BookID)
-            </td>
-            <td scope="col">
-                @Html.DisplayFor(modelitem => item.Title)
-            </td>
-            <td scope="col">
-                @Html.DisplayFor(modelitem => item.Description)
-            </td>
-            <td scope="col">
-                @Html.DisplayFor(modelitem => item.Ammount)
-            </td>
-            <td>
-                <div>
-                    <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
-                </div>
-            </td>
-            @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
+
+                @if (item.Ammount > 0)
+                {
+                    <tr class="table-success">
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.BookID)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Title)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Description)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Ammount)
+                        </td>
+                        <td>
+                            <div>
+                                <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
+                            </div>
+                        </td>
+                        @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
+                        {
+                    <td>
+                        <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
+                        <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
+                    </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                    </tr>
+                }
+                else
+                {
+                    <tr class="table-danger">
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.BookID)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Title)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Description)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Ammount)
+                        </td>
+                        <td>
+                            <div>
+                                <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
+                            </div>
+                        </td>
+                        @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
+                        {
+                    <td>
+                        <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
+                        <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
+                    </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+
+                    </tr>
+                }
+            }
+            else
+            { @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
             {
-                <td><a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a></td>
-            }
-                    else
-                    {
-                        <td></td>
-                    }
-        </tr>
-            }
-            else{
-    <tr class="table-danger">
-        <td scope="col">
-            @Html.DisplayFor(modelitem => item.BookID)
-        </td>
-        <td scope="col">
-            @Html.DisplayFor(modelitem => item.Title)
-        </td>
-        <td scope="col">
-            @Html.DisplayFor(modelitem => item.Description)
-        </td>
-        <td scope="col">
-            @Html.DisplayFor(modelitem => item.Ammount)
-        </td>
-        <td>
-            <div>
-                <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
-            </div>
-        </td>
-        @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
-        {
-            <td><a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a></td>
-        }
-        else
-        {
-            <td></td>
-        }
-    </tr>
+                    <tr class="table-primary">
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.BookID)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Title)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Description)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Ammount)
+                        </td>
+                        <td>
+                            <div>
+                                <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
+                            </div>
+                        </td>
+                        @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
+                        {
+                    <td>
+                        <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
+                        <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
+                    </td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                    </tr>
+                }
             }
         }
     </tbody>

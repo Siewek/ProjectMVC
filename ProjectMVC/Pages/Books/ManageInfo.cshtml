@@ -1,0 +1,17 @@
+﻿@page
+@model ProjectMVC.Pages.Books.ManageInfoModel
+@{
+}
+
+
+<form method="post">
+    <div>
+    <a class="btn btn-warning" asp-page="./ManageTags" asp-route-id="@Model.Books[0].BookID">Manage Tags</a>
+    </div>
+    <a2>Put on shelves</a2>
+    <input type="checkbox" name="rdy" value="true" class="big-checkbox" />
+    <input type="number" name="id" hidden value=@Model.Books[0].BookID />
+    <div>
+        <input type="submit" value="confirm" />
+    </div>
+</form>
