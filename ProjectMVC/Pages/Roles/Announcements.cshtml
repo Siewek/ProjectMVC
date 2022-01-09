@@ -1,0 +1,12 @@
+﻿@page
+@model ProjectMVC.Pages.Roles.AnnouncementsModel
+@{
+}
+
+<h1>Announcement:</h1>
+<form method="post" id="form">
+    <div>
+        <input type="submit" value="add" name="action" class="btn btn-success" />
+    </div>
+    <textarea type="text" name="message" cols="50" rows="5" form="form" required></textarea>
+</form>

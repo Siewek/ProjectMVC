@@ -18,6 +18,8 @@ namespace ProjectMVC.Data
         public DbSet<AuthorBook> AuthorBooks { get; set; }
         public DbSet<BookTag> BookTags { get; set; }
 
+        public DbSet<AdminMessage> AdminMessages { get; set; }
+
         public DbSet<Order> Orders { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
