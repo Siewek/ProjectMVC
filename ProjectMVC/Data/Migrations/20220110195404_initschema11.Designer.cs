@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjectMVC.Data;
 
 namespace ProjectMVC.Data.Migrations
 {
     [DbContext(typeof(LibraryTwoDBContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220110195404_initschema11")]
+    partial class initschema11
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -354,8 +356,8 @@ namespace ProjectMVC.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("BookID")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("BookID")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfOrder")
                         .HasColumnType("datetime2");

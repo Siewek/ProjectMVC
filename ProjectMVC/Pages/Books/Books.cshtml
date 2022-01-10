@@ -11,6 +11,7 @@
             <th scope="col">@Html.DisplayNameFor(model => model.Books[0].Description)</th>
             <th scope="col">Amount</th>
             <th scope="col"></th>
+            <th scope="col"></th>
             @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
             {
                 <th scope="col">Mod Options</th>
@@ -42,6 +43,14 @@
                             <div>
                                 <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
                             </div>
+                        </td>
+                        <td>
+                            @if (User.IsInRole("User") || User.IsInRole("Mod") || User.IsInRole("Admin"))
+                            {
+                                <form method="post">
+                                    <input type="number" hidden value="@item.BookID" name="book" />
+                                    <input type="submit" value="Add To Cart" name="action" class="btn btn-success" />
+                                </form>}
                         </td>
                         @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
                         {
@@ -76,6 +85,12 @@
                                 <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
                             </div>
                         </td>
+                        @if (User.IsInRole("User") || User.IsInRole("Mod") || User.IsInRole("Admin"))
+                        {
+                            <td>
+                                Book Unavailable
+                            </td>
+                        }
                         @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
                         {
                             <td>
@@ -112,6 +127,8 @@
                                 <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
                             </div>
                         </td>
+                        <td>
+                        </td>
                         @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
                         {
                             <td>
@@ -129,7 +146,9 @@
         }
     </tbody>
 </table>
+<br />
 @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
 {
     <a class="btn btn-success" asp-page="./Create">Create</a>
 }
+<br />

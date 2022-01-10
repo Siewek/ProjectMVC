@@ -10,8 +10,8 @@ namespace ProjectMVC.Models
     {
         [Key]
         public int OrderID { get; set; }
-        public int BookID { get; set; }
-        public int UserID { get; set; }
+        public string BookID { get; set; }
+        public string UserID { get; set; }
 
         public DateTime DateOfOrder { get; set; }
         public DateTime EndDate { get; set; }

@@ -69,7 +69,7 @@ namespace ProjectMVC.Areas.Identity.Pages.Account
                 var messsage = new MimeMessage();
                 messsage.From.Add(MailboxAddress.Parse("PrzepisyKulinarne.com"));
                 messsage.To.Add(MailboxAddress.Parse(user.Email));
-                messsage.Subject = "Weryfikacja Konta";
+                messsage.Subject = "Zmiana Has³a";
                 messsage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
                 {
                     Text = callbackUrl

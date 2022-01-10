@@ -11,7 +11,7 @@
 
 <h1>Announcements and News:</h1>
 <br />
-@for(int i = Model.Messages.Count() - 1; i>=0 && i>= Model.Messages.Count()-2; i--)
+@for(int i = Model.Messages.Count() - 1; i>=0 && i>= Model.Messages.Count()-6; i--)
             {
                 <div>
                     <h4>@Html.DisplayFor(modelitem=>Model.Messages.ElementAt(i).timestamp)</h4>
