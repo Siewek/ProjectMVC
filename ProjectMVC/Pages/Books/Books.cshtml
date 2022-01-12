@@ -26,44 +26,58 @@
 
                 @if (item.Ammount > 0)
                 {
-                    <tr class="table-success">
-                        <td scope="col">
-                            @Html.DisplayFor(modelitem => item.BookID)
-                        </td>
-                        <td scope="col">
-                            @Html.DisplayFor(modelitem => item.Title)
-                        </td>
-                        <td scope="col">
-                            @Html.DisplayFor(modelitem => item.Description)
-                        </td>
-                        <td scope="col">
-                            @Html.DisplayFor(modelitem => item.Ammount)
-                        </td>
-                        <td>
-                            <div>
-                                <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
-                            </div>
-                        </td>
-                        <td>
-                            @if (User.IsInRole("User") || User.IsInRole("Mod") || User.IsInRole("Admin"))
-                            {
-                                <form method="post">
-                                    <input type="number" hidden value="@item.BookID" name="book" />
-                                    <input type="submit" value="Add To Cart" name="action" class="btn btn-success" />
-                                </form>}
-                        </td>
-                        @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
-                        {
-                            <td>
-                                <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
-                                <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
-                            </td>
-                        }
-                        else
-                        {
-                            <td></td>
-                        }
-                    </tr>
+        <tr class="table-success">
+            <td scope="col">
+                @Html.DisplayFor(modelitem => item.BookID)
+            </td>
+            <td scope="col">
+                @Html.DisplayFor(modelitem => item.Title)
+            </td>
+            <td scope="col">
+                @Html.DisplayFor(modelitem => item.Description)
+            </td>
+            <td scope="col">
+                @Html.DisplayFor(modelitem => item.Ammount)
+            </td>
+            <td>
+                <div>
+                    <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
+                </div>
+            </td>
+            @if (User.IsInRole("User") || User.IsInRole("Mod") || User.IsInRole("Admin"))
+            {             
+                @if (Model.myOrder.Exists(x => x.Title == item.Title) || 
+                    Model.Orders.Exists(x =>(x.BookID == item.BookID.ToString())&&(!x.returned)))
+                {
+                    <td>
+                        You cant order the same book twice
+                    </td>
+                }
+                else
+                {
+                <td>
+                    <form method="post">
+
+                        <input type="number" hidden value="@item.BookID" name="book" />
+
+                        <input type="submit" value="Add To Cart" name="action" class="btn btn-success" />
+                    </form>
+                    </td>
+                }
+        }
+
+            @if (User.IsInRole("Mod") || User.IsInRole("Admin"))
+            {
+                <td>
+                    <a class="btn btn-warning" asp-page="./ManageAmount" asp-route-id="@item.BookID">Manage Ammount</a>
+                    <a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@item.BookID">Manage Info</a>
+                </td>
+            }
+            else
+            {
+                <td></td>
+            }
+        </tr>
                 }
                 else
                 {

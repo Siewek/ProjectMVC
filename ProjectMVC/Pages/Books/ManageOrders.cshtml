@@ -1,0 +1,86 @@
+﻿@page
+@model ProjectMVC.Pages.Books.ManageOrdersModel
+@{
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(x => x.orders[0].OrderID)
+            </td>
+            <td>
+                @Html.DisplayNameFor(x => x.orders[0].UserID)
+            </td>
+            <td>
+                @Html.DisplayNameFor(x => x.orders[0].Title)
+            </td>
+            <td>
+                @Html.DisplayNameFor(x => x.orders[0].DateOfOrder)
+            </td>
+            <td>
+                @Html.DisplayNameFor(x => x.orders[0].EndDate)
+            </td>
+            <td>
+                @Html.DisplayNameFor(x => x.orders[0].penalty)
+            </td>
+            <td>
+                @Html.DisplayNameFor(x => x.orders[0].fulfilled)
+            </td>
+            <td>
+                @Html.DisplayNameFor(x => x.orders[0].returned)
+            </td>
+            <td>
+                @Html.DisplayNameFor(x => x.orders[0].returnedInTime)
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.orders)
+            {
+        <tr>
+            <td>
+                @Html.DisplayFor(x => item.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.DateOfOrder)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.penalty)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.fulfilled)
+                @if (!item.fulfilled)
+                {
+                <form method="post">
+                    <input type="number" hidden value="@item.OrderID" name="id" /> 
+                    <input type="submit" value="Fulfill" name="action" class="btn btn-success"/>
+                </form>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.returned)
+                @if (item.fulfilled == true && item.returned == false)
+                {
+                <form method="post">
+                    <input type="number" hidden value="@item.OrderID" name="id" />
+                    <input type="submit" value="Return" name="action" class="btn btn-success" />
+                </form>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.returnedInTime)
+            </td>
+        </tr>
+            }
+    </tbody>
+</table>

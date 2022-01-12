@@ -70,15 +70,27 @@ namespace ProjectMVC.Pages.Books
                 {
                     Order _order = new Order();
                     _order.BookID = item.BookID.ToString();
+                    _order.Title = item.Title.ToString();
                     _order.UserID = userId.ToString();
                     _order.DateOfOrder = DateTime.Now;
                     _order.EndDate = _order.DateOfOrder.AddDays(14);
+                    _order.penalty = 0;
+                    _order.fulfilled = false;
+                    _order.returned = false;
+                    _order.returnedInTime = false;
                     _context.Orders.Add(_order);
                     _context.SaveChanges();
-                }             
+                }
+                myOrder.Clear();
+                HttpContext.Session.Clear();
                 return RedirectToPage("/Books/Orders");
             }
-            return Page();
+            if (action == "Back")
+            {
+                HttpContext.Session.SetString("OrderAddress", JsonConvert.SerializeObject(myOrder));
+                return RedirectToPage("/Books/Books");
+            }
+                return Page();
         }
     }
    

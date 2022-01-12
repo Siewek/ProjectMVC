@@ -2,3 +2,174 @@
 @model ProjectMVC.Pages.Books.OrdersModel
 @{
 }
+
+@if (User.IsInRole("User") || User.IsInRole("Mod") || User.IsInRole("Admin"))
+{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <td>
+                    Order nr
+                </td>
+                <td>
+                    Title
+                </td>
+                <td>
+                    Date of Order
+                </td>
+                <td>
+                    Due Date
+                </td>
+                <td>
+                    penalty
+                </td>
+                <td>
+                    Status
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.orders)
+            {
+                @if (item.fulfilled == false && item.returned == false)
+                {
+                    <tr class="table-secondary">
+                        <td>
+                            @Html.DisplayFor(x => item.OrderID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.DateOfOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.penalty)
+                        </td>
+                        <td>
+                            Ready
+                        </td>
+                    </tr>
+                }
+                else if (item.fulfilled == true && item.returned == false && DateTime.Now < item.EndDate)
+                {
+                    <tr class="table-success">
+                        <td>
+                            @Html.DisplayFor(x => item.OrderID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.DateOfOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.penalty)
+                        </td>
+                        <td>
+                            Active
+                        </td>
+                    </tr>
+                }
+                else if (item.fulfilled == true && item.returned == true && item.returnedInTime == true)
+                {
+                    <tr class="table-primary">
+                        <td>
+                            @Html.DisplayFor(x => item.OrderID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.DateOfOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.penalty)
+                        </td>
+                        <td>
+                            Returned
+                        </td>
+                    </tr>
+                }
+                else if (item.fulfilled == true && item.returned == true && item.returnedInTime == false)
+                {
+                    <tr class="table-warning">
+                        <td>
+                            @Html.DisplayFor(x => item.OrderID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.DateOfOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.penalty)
+                        </td>
+                        <td>
+                            Returned Late
+                        </td>
+                    </tr>
+                }
+                else if (item.fulfilled == false && item.returned == false && item.returnedInTime == false && DateTime.Now > item.EndDate)
+                {
+                    <tr class="table-danger">
+                        <td>
+                            @Html.DisplayFor(x => item.OrderID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.DateOfOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.penalty)
+                        </td>
+                        <td>
+                            Cancelled
+                        </td>
+                    </tr>
+                }
+                else if (item.fulfilled == true && item.returned == false && item.returnedInTime == false && DateTime.Now > item.EndDate)
+                {
+                    <tr class="table-danger">
+                        <td>
+                            @Html.DisplayFor(x => item.OrderID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.DateOfOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.penalty)
+                        </td>
+                        <td>
+                            Late
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,10 +23,15 @@ namespace ProjectMVC.Pages.Books
         }
         public IList<Book> Books { get; set; }
         public IList<Book> selectedBook { get; set; }
+        public List<Order> Orders { get; set; }
         
         public List<Book> myOrder;
+        
         public async Task OnGetAsync()
         {
+
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             try
             {
                 var OrderAddress = HttpContext.Session.GetString("OrderAddress");
@@ -37,7 +43,11 @@ namespace ProjectMVC.Pages.Books
                 myOrder = new List<Book>();
             }
             Books = await _context.Books.ToListAsync();
-            
+            if (userId != null)
+            {
+                Orders = await (from o in _context.Orders where o.UserID == userId.ToString() select o).ToListAsync();
+            }
+
         }
         public async Task<IActionResult> OnPostAsync(int? book, string action)
         {
