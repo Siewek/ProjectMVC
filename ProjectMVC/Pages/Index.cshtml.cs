@@ -26,7 +26,7 @@ namespace ProjectMVC.Pages
         public void OnGet()
         {
             Messages = _context.AdminMessages.ToList();
-            HttpContext.Session.Clear();
+            //HttpContext.Session.Clear();
         }
     }
 }

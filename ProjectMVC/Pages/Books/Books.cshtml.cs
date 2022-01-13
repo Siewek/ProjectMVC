@@ -25,6 +25,8 @@ namespace ProjectMVC.Pages.Books
         public IList<Book> selectedBook { get; set; }
         public List<Order> Orders { get; set; }
         
+        public List<Order> returnedOrder { get; set; }
+        public List<Order> selectedOrder { get; set; }
         public List<Book> myOrder;
         
         public async Task OnGetAsync()
@@ -46,7 +48,18 @@ namespace ProjectMVC.Pages.Books
             if (userId != null)
             {
                 Orders = await (from o in _context.Orders where o.UserID == userId.ToString() select o).ToListAsync();
+                returnedOrder =  (from o in Orders where o.returned select o).ToList();
+                selectedOrder = await (from o in _context.Orders where o.UserID == userId.ToString() select o).ToListAsync();
+                foreach (Order order in Orders)
+                {
+                    foreach(Order order2 in returnedOrder)
+                    {
+                        if (order == order2)
+                            selectedOrder.Remove(order);
+                    }
+                }
             }
+
 
         }
         public async Task<IActionResult> OnPostAsync(int? book, string action)

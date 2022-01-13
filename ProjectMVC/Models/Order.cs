@@ -16,7 +16,7 @@ namespace ProjectMVC.Models
 
         public DateTime DateOfOrder { get; set; }
         public DateTime EndDate { get; set; }
-
+        public DateTime DateOfReturn { get; set; }
         public bool fulfilled { get; set; }
 
         public bool returned { get; set; }

@@ -46,8 +46,8 @@
             </td>
             @if (User.IsInRole("User") || User.IsInRole("Mod") || User.IsInRole("Admin"))
             {             
-                @if (Model.myOrder.Exists(x => x.Title == item.Title) || 
-                    Model.Orders.Exists(x =>(x.BookID == item.BookID.ToString())&&(!x.returned)))
+                @if (Model.myOrder.Exists(x => x.Title == item.Title) ||
+                    Model.selectedOrder.Exists(x =>(x.BookID == item.BookID.ToString())))
                 {
                     <td>
                         You cant order the same book twice
@@ -166,3 +166,4 @@
     <a class="btn btn-success" asp-page="./Create">Create</a>
 }
 <br />
+
