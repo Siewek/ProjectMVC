@@ -2,7 +2,8 @@
 @model ProjectMVC.Pages.Books.ManageAuthorsModel
 @{
 }
-<a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@Model.Books[0].BookID">Back</a>
+<a class="btn btn-warning" asp-page="./ManageInfo" asp-route-id="@Model.Books[0].BookID">Back</a><br />
+<h1>List of Authors who didn't write the book:</h1><br />
 <table class="table table-hover">
     <thead>
         <tr>
@@ -39,6 +40,7 @@
 
     </tbody>
 </table>
+<h1>List of authors who wrote the book:</h1><br />
 <table class="table table-hover">
     <thead>
         <tr>
@@ -64,7 +66,7 @@
                 <form method="post">
                     <input type="text" hidden value="remove" name="action" />
                     <input type="text" hidden value=@item.AuthorID name="authid" />
-                    <input type="submit" value="Remove Author" name="action" class="btn btn-success" />
+                    <input type="submit" value="Remove Author" name="action" class="btn btn-danger" />
                 </form>
             </td>
         </tr>

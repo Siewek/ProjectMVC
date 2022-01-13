@@ -1,0 +1,15 @@
+﻿@page
+@model ProjectMVC.Pages.Authors.EditModel
+@{
+}
+
+<form method="post">
+    <h1>Author: @Model.author[0].AuthorName @Model.author[0].AuthorLastName</h1><br />
+    <input type="text" name="name" id="form1"/>
+    <label for="form1">First Name</label>
+    <br />
+    <input type="text" name="last_name" id="form2"/>
+    <label for="form2">Last Name</label>
+    <br />
+    <input type="submit" value="Confirm" name="action" />
+</form>
