@@ -17,10 +17,13 @@
                 </td>
             </tr>
         }
+        @if (User.IsInRole("Admin,Mod"))
+        {
         <tr>
             <td>
                 <a class="btn btn-success" asp-page="./Create">Create Tag</a>
-            </td>>
+            </td>
         </tr>
+        }
     </tbody>
 </table>

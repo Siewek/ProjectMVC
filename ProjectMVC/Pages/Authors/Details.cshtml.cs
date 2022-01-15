@@ -25,8 +25,6 @@ namespace ProjectMVC.Pages.Authors
             Authors = (from a in _context.Authors where a.AuthorID == id select a).ToList();
             Books = (from b in _context.Books join ab in _context.AuthorBooks
                      on b.BookID equals ab.BookID where ab.AuthorID == id select b).ToList();
-            Categories = (from c in _context.Categories join b in _context.Books on c.CategoryID equals b.CategoryFK
-                          where b.BookID == id select c).ToList();
         }
     }
 }

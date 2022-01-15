@@ -14,9 +14,6 @@
                 Title
             </td>
             <td>
-                Category
-            </td>
-            <td>
                 additional info
             </td>
         </tr>
@@ -30,9 +27,6 @@
             </td>
             <td>
                 @Html.DisplayFor(x => item.Title)
-            </td>
-            <td>
-                @Model.Categories.ElementAt(0).CategoryName
             </td>
             <td>
                 <a class="btn btn-warning" asp-page="/Books/Details" asp-route-id="@item.BookID">Details</a>

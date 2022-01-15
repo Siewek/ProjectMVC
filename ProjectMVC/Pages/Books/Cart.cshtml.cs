@@ -32,6 +32,10 @@ namespace ProjectMVC.Pages.Books
         public Order _order { get; set; }
 
         public IList<Order> orders { get; set; }
+
+        public IList<AdminMessage> Announcements {get;set;}
+        [BindProperty]
+        public AdminMessage _Announcement { get; set; }
         public void OnGet()
         {
             try
@@ -79,6 +83,12 @@ namespace ProjectMVC.Pages.Books
                     _order.returned = false;
                     _order.returnedInTime = false;
                     _context.Orders.Add(_order);
+                    if (item.Ammount == 0)
+                    {
+                        _Announcement.mesage = item.Title + " Book out of stock";
+                        _Announcement.timestamp = DateTime.Now;
+                        _context.AdminMessages.Add(_Announcement);
+                    }
                     _context.SaveChanges();
                 }
                 myOrder.Clear();

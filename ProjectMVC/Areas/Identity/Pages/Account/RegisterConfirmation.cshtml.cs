@@ -65,6 +65,7 @@ namespace ProjectMVC.Areas.Identity.Pages.Account
                 };
                 using (var client = new MailKit.Net.Smtp.SmtpClient())
                 {
+                   // client.CheckCertificateRevocation = false;
                     client.Connect("smtp.gmail.com", 587, false);
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                     client.Authenticate("przepisykulinarneps6mo@gmail.com", "YX5ibhzvFPrvp#n");

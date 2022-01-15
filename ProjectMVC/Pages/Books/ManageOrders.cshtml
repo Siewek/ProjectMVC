@@ -33,6 +33,9 @@
             <td>
                 @Html.DisplayNameFor(x => x.orders[0].returnedInTime)
             </td>
+            <td>
+                Additional actions:
+            </td>
         </tr>
     </thead>
     <tbody>
@@ -80,6 +83,23 @@
             <td>
                 @Html.DisplayFor(x => item.returnedInTime)
             </td>
+            
+                @if (item.returned == false && (item.EndDate - DateTime.Now).TotalDays < 2)
+                {
+                    <td>
+                <form method="post">
+                    <input type="number" hidden value="@item.OrderID" name="id" />
+                    <input type="submit" class="btn btn-danger" name="action" value="Send Reminder"/>
+                </form>
+                        </td>
+                }
+                else
+                {
+                    <td>
+                        No actions available
+                    </td>
+                }
+            
         </tr>
             }
     </tbody>
