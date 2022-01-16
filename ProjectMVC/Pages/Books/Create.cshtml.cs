@@ -35,8 +35,8 @@ namespace ProjectMVC.Pages.Books
             {
                 return Page();
             }
+
             Categories = (from c in _context.Categories
-                          join cb in _context.Books on c.CategoryID equals cb.BookID
                           where c.CategoryName == cat
                           select c).ToList();
             _Books.IsReady = false;
