@@ -17,31 +17,56 @@
     <tbody>
         @foreach (var item in Model.Books)
         {
-            @if (item.Ammount > 0)
+            @if (item.IsReady)
             {
-                <tr class="table-success">
-                    <td scope="col">
-                        @Html.DisplayFor(modelitem => item.BookID)
-                    </td>
-                    <td scope="col">
-                        @Html.DisplayFor(modelitem => item.Title)
-                    </td>
-                    <td scope="col">
-                        @Html.DisplayFor(modelitem => item.Description)
-                    </td>
-                    <td scope="col">
-                        @Html.DisplayFor(modelitem => item.Ammount)
-                    </td>
-                    <td>
-                        <div>
-                            <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
-                        </div>
-                    </td>
-                </tr>
+                @if (item.Ammount > 0)
+                {
+                    <tr class="table-success">
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.BookID)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Title)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Description)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Ammount)
+                        </td>
+                        <td>
+                            <div>
+                                <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    <tr class="table-danger">
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.BookID)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Title)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Description)
+                        </td>
+                        <td scope="col">
+                            @Html.DisplayFor(modelitem => item.Ammount)
+                        </td>
+                        <td>
+                            <div>
+                                <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
             }
-            else
+            else if (User.IsInRole("Mod") || User.IsInRole("Admin"))
             {
-                <tr class="table-danger">
+                <tr class="table-primary">
                     <td scope="col">
                         @Html.DisplayFor(modelitem => item.BookID)
                     </td>
@@ -56,7 +81,7 @@
                     </td>
                     <td>
                         <div>
-                            <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.BookID">Details</a>
+                            <a class="btn btn-warning" asp-page="/Books/Details" asp-route-id="@item.BookID">Details</a>
                         </div>
                     </td>
                 </tr>

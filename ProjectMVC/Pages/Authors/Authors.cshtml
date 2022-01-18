@@ -37,11 +37,11 @@
                     @if (User.IsInRole("Admin") || User.IsInRole("Mod"))
                     {
                         <div>
-                            <a class="btn btn-warning" asp-page="./Edit" asp-route-id="@item.AuthorID">Edit</a>
+                            <a class="btn btn-warning" asp-page="/Authors/Edit" asp-route-id="@item.AuthorID">Edit</a>
                         </div>
                     }
                     <div>
-                        <a class="btn btn-warning" asp-page="./Details" asp-route-id="@item.AuthorID">Details</a>
+                        <a class="btn btn-warning" asp-page="/Authors/Details" asp-route-id="@item.AuthorID">Details</a>
                     </div>
                 </td>
                 <td class="table-secondary"></td>

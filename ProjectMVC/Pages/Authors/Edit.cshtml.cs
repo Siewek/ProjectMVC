@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,8 +12,10 @@ using ProjectMVC.Models;
 
 namespace ProjectMVC.Pages.Authors
 {
+    [Authorize(Roles = "Admin , Mod")]
     public class EditModel : PageModel
     {
+        
         public ProjectMVC.Data.LibraryTwoDBContext _context;
         public EditModel(LibraryTwoDBContext context)
         {

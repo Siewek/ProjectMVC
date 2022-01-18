@@ -55,9 +55,7 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item btn btn-outline-warning">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
+                        
                         <li class="nav-item btn btn-outline-warning">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Books/Books">Books</a>
                         </li>
@@ -72,17 +70,23 @@
                         </li>
                         @if (User.IsInRole("User") || User.IsInRole("Mod") || User.IsInRole("Admin"))
                         {
-                    <li class="nav-item btn btn-outline-secondary">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Books/Orders">My Orders</a>
-                    </li>
+                            <li class="nav-item btn btn-outline-secondary">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Books/Cart">Cart</a>
+                            </li>
                         }
-                        @if (User.IsInRole("Admin"))
-                        {
-                    <li class="nav-item btn btn-outline-danger">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Roles/AdminPanel">Admin Panel</a>
-                    </li>
-                        }
-                    </ul>
+                            @if (User.IsInRole("User") || User.IsInRole("Mod") || User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item btn btn-outline-secondary">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Books/Orders">My Orders</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item btn btn-outline-danger">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Roles/AdminPanel">Admin Panel</a>
+                                </li>
+                            }
+                        </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>

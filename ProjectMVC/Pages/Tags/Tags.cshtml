@@ -2,6 +2,17 @@
 @model ProjectMVC.Pages.Tags.TagsModel
 @{
 }
+
+@if (User.IsInRole("Admin") || User.IsInRole("Mod"))
+{
+    <a class="btn btn-success" asp-page="Create">Create new Tag</a>
+}
+<a class="btn btn-warning" asp-page="/Filters/Filters">Filter</a>
+
+<br />
+<h1>Currently available Tags</h1>
+<br />
+
 <table class=" table table-hover">
     <thead>
         <tr>
@@ -19,11 +30,11 @@
         }
         @if (User.IsInRole("Admin,Mod"))
         {
-        <tr>
-            <td>
-                <a class="btn btn-success" asp-page="./Create">Create Tag</a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <a class="btn btn-success" asp-page="./Create">Create Tag</a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
